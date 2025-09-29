@@ -11,7 +11,7 @@ app.use(cors())
 app.use(express.json())
 app.use(express.static('public'))
 app.use(routes)
-app.use('/api', iaRoutes);
+app.use('/', iaRoutes);
 
 app.listen(port, (req, res) => {
     console.log(`Servidor rodando em http://localhost:` + port);

@@ -10,15 +10,15 @@
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1"
   },
-  "name": "api",
+  "name": "api-pulsemais",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "api/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "dev": "npx nodemon api/server.js",
+    "postinstall": "prisma migrate dev --name init && prisma generate"
   },
   "keywords": [],
-  "author": "",
+  "author": "dud4silvaa",
   "license": "ISC",
   "description": "",
   "devDependencies": {

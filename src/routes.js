@@ -15,7 +15,54 @@ const MiddlewareAuth = require('./middlewares/auth');
 const Login = require('./controllers/login');
 
 routes.get('/', function (req, res) {
-    res.send('API de Pulse+')
+    res.json({
+        title: "API Academia",
+        version: "1.0.0",
+        rotas:[
+            {"POST /login": "Login do usuário" },
+            {"GET /validacao": "Validação do token"},
+            {"GET /user": "Listar usuários"},
+            {"POST /user": "Criar usuário"},
+            {"PUT /user/:id": "Atualizar usuário"},
+            {"DELETE /user/:id": "Deletar usuário"},
+            {"GET /dadosfisicos": "Listar dados físicos"},
+            {"POST /dadosfisicos": "Criar dados físicos"},
+            {"PUT /dadosfisicos/:id": "Atualizar dados físicos"},
+            {"DELETE /dadosfisicos/:id": "Deletar dados físicos"},
+            {"GET /dadosmentais": "Listar dados mentais"},
+            {"POST /dadosmentais": "Criar dados mentais"},
+            {"PUT /dadosmentais/:id": "Atualizar dados mentais"},
+            {"DELETE /dadosmentais/:id": "Deletar dados mentais"},
+            {"GET /diario": "Listar diário"},
+            {"POST /diario": "Criar diário"},
+            {"PUT /diario/:id": "Atualizar diário"},
+            {"DELETE /diario/:id": "Deletar diário"},
+            {"GET /meditacao": "Listar meditações"},
+            {"POST /meditacao": "Criar meditação"},
+            {"PUT /meditacao/:id": "Atualizar meditação"},
+            {"DELETE /meditacao/:id": "Deletar meditação"},
+            {"GET /MedUser": "Listar meditações do usuário"},
+            {"POST /MedUser": "Criar meditação do usuário"},
+            {"PUT /MedUser/:id": "Atualizar meditação do usuário"},
+            {"DELETE /MedUser/:id": "Deletar meditação do usuário"},
+            {"GET /exercicio": "Listar exercícios"},
+            {"POST /exercicio": "Criar exercício"},
+            {"PUT /exercicio/:id": "Atualizar exercício"},
+            {"DELETE /exercicio/:id": "Deletar exercício"},
+            {"GET /exerselec": "Listar exercícios selecionados"},
+            {"POST /exerselec": "Criar exercício selecionado"},
+            {"PUT /exerselec/:id": "Atualizar exercício selecionado"},
+            {"DELETE /exerselec/:id": "Deletar exercício selecionado"},
+            {"GET /treino": "Listar treinos"},
+            {"POST /treino": "Criar treino"},
+            {"PUT /treino/:id": "Atualizar treino"},
+            {"DELETE /treino/:id": "Deletar treino"},
+            {"GET /treinolink": "Listar links de treino"},
+            {"POST /treinolink": "Criar link de treino"},
+            {"PUT /treinolink/:id": "Atualizar link de treino"},
+            {"DELETE /treinolink/:id": "Deletar link de treino"}
+        ]
+    })
 
 })
 

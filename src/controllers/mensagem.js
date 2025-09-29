@@ -1,11 +1,11 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
-import dotenv from "dotenv";
+const { GoogleGenerativeAI } = require("@google/generative-ai");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-export const chatIA = async (req, res) => {
+const chatIA = async (req, res) => {
   try {
     const { text } = req.body;
 
@@ -24,3 +24,5 @@ export const chatIA = async (req, res) => {
     res.status(500).json({ error: "Erro ao gerar resposta da IA" });
   }
 };
+
+module.exports = { chatIA };

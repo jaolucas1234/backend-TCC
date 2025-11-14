@@ -3,8 +3,8 @@ const cors = require('cors')
 
 const app = express()
 const routes = require('../src/routes')
-// const iaRoutesModule = require('../src/iarouter');
-// const iaRoutes = iaRoutesModule.default;
+const iaRoutesModule = require('../src/iarouter');
+const iaRoutes = iaRoutesModule.default;
 const port = process.env.PORT || 3001;
 
 app.use(cors())

@@ -7,10 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Genero {
-  MASCULINO
-  FEMININO
-}
 
 enum Sexo {
   MASCULINO
@@ -38,7 +34,7 @@ model User {
   email         String           @unique
   senha         String           @db.VarChar(255)
   nascimento    DateTime
-  genero        Genero
+  genero        Sexo
   Dadosfisicos  DadosFisicos[]
   Dadosmentais  DadosMentais[]
   Diario        Diario[]

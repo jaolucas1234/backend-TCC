@@ -15,7 +15,7 @@
   "main": "api/server.js",
   "scripts": {
     "dev": "npx nodemon api/server.js",
-    "postinstall": "prisma migrate reset"
+    "postinstall": "prisma migrate reset --force --skip-seed"
   },
   "keywords": [],
   "author": "dud4silvaa",

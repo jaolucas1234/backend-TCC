@@ -18,14 +18,24 @@ const login = async (req, res) => {
         } else {
             const token = jsonwebtoken.sign(
                 {
-                    id: user.id,
+                    id_user: user.id_user, // ← CORRETO: usa id_user
                     nome: user.nome,
                     email: user.email,
                 },
                 process.env.SECRET_JWT,
                 { expiresIn: validade ? validade + "min" : "60min" }
             );
-            res.status(200).json({ token: token });
+            
+            // RETORNA TODOS OS DADOS NECESSÁRIOS
+            res.status(200).json({ 
+                token: token,
+                id_user: user.id_user, // ← ID para o Flutter
+                user: {
+                    id_user: user.id_user,
+                    nome: user.nome,
+                    email: user.email
+                }
+            });
         }
     } catch (err) {
         console.error('Erro no login:', err);
@@ -45,7 +55,9 @@ const validaToken = (req, res) => {
             return res.status(403).send({ message: "Token inválido ou expirado." }).end();
         }
         req.user = decoded;
-        res.status(200).json({ message: req.user });
+        res.status(200).json({ 
+            user: req.user // ← Retorna o usuário decodificado
+        });
     });
 };
 

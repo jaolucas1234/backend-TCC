@@ -13,7 +13,7 @@ const Treino = require('./controllers/controllerTreino')
 const TreinoLink = require('./controllers/controllerTreinosLink')
 const MiddlewareAuth = require('./middlewares/auth');
 const Login = require('./controllers/login');
-const chatIa = require('./controllers/mensagem');
+const { chatIA } = require('./controllers/mensagem');
 
 routes.get('/', function (req, res) {
     res.json({
@@ -121,7 +121,7 @@ routes.post('/treinolink', TreinoLink.create)
 routes.put('/treinolink/:id', TreinoLink.update)
 routes.delete('/treinolink/:id', TreinoLink.remove)
 
-routes.chatIA('/mensagem', chatIa.mensagem);
+routes.post('/mensagem', chatIA);
 
 
 module.exports = routes

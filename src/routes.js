@@ -121,7 +121,7 @@ routes.post('/treinolink', TreinoLink.create)
 routes.put('/treinolink/:id', TreinoLink.update)
 routes.delete('/treinolink/:id', TreinoLink.remove)
 
-routes.post('/mensagem', chatIa.mensagem);
+routes.chatIA('/mensagem', chatIa.mensagem);
 
 
 module.exports = routes

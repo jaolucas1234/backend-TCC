@@ -13,6 +13,7 @@ const Treino = require('./controllers/controllerTreino')
 const TreinoLink = require('./controllers/controllerTreinosLink')
 const MiddlewareAuth = require('./middlewares/auth');
 const Login = require('./controllers/login');
+const chatIa = require('./controllers/mensagem');
 
 routes.get('/', function (req, res) {
     res.json({
@@ -60,7 +61,8 @@ routes.get('/', function (req, res) {
             {"GET /treinolink": "Listar links de treino"},
             {"POST /treinolink": "Criar link de treino"},
             {"PUT /treinolink/:id": "Atualizar link de treino"},
-            {"DELETE /treinolink/:id": "Deletar link de treino"}
+            {"DELETE /treinolink/:id": "Deletar link de treino"},
+            {"POST /mensagem": "Enviar mensagem para o chat IA"}
         ]
     })
 
@@ -118,6 +120,8 @@ routes.get('/treinolink', TreinoLink.read)
 routes.post('/treinolink', TreinoLink.create)
 routes.put('/treinolink/:id', TreinoLink.update)
 routes.delete('/treinolink/:id', TreinoLink.remove)
+
+routes.post('/mensagem', chatIa.mensagem);
 
 
 module.exports = routes

@@ -2,56 +2,48 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 async function create(req, res) {
-    const { id_diario, id_user, exercicio_feitos, calorias_gastas, copos_bebidos } = req.body
+    const { id_user, exercicio_feitos, calorias_gastas, copos_bebidos, metros_andados } = req.body
 
     try {
-        const dadosFisicos = await prisma.dadosFisicos.create({
+        const diario = await prisma.diario.create({
             data: {
-                id_diario,
-                id_user,
-                exercicio_feitos,
-                calorias_gastas,
-                copos_bebidos
+                id_user: parseInt(id_user),
+                exercicio_feitos: parseInt(exercicio_feitos) || 0,
+                calorias_gastas: parseFloat(calorias_gastas) || 0.0,
+                copos_bebidos: parseInt(copos_bebidos) || 0,
+                metros_andados: parseInt(metros_andados) || 0,
             }
         })
-        res.status(201).json(dadosFisicos)
+        res.status(201).json(diario)
     } catch (error) {
-        console.error('Error creating physical data:', error)
+        console.error('Error creating diario:', error)
         res.status(500).json({ error: 'Internal Server Error' })
     }
 }
 
 async function read(req, res) {
-    const { id } = req.params
-
     try {
-        const diario = await prisma.diario.findMany({
-
-        })
-
-        if (!diario) {
-            return res.status(404).json({ error: 'Diario not found' })
-        }
-
-        res.status(200).json(diario)
+        const diarios = await prisma.diario.findMany()
+        res.status(200).json(diarios)
     } catch (error) {
-        console.error('Error reading diario:', error)
+        console.error('Error reading diarios:', error)
         res.status(500).json({ error: 'Internal Server Error' })
     }
 }
 
 async function update(req, res) {
     const { id } = req.params
-    const { id_user, exercicio_feitos, calorias_gastas, copos_bebidos } = req.body
+    const { exercicio_feitos, calorias_gastas, copos_bebidos, metros_andados } = req.body
 
     try {
+
         const diario = await prisma.diario.update({
-            where: { id: parseInt(id) },
+            where: { id_diario: parseInt(id) },
             data: {
-                id_user,
-                exercicio_feitos,
-                calorias_gastas,
-                copos_bebidos
+                exercicio_feitos: parseInt(exercicio_feitos),
+                calorias_gastas: parseFloat(calorias_gastas),
+                copos_bebidos: parseInt(copos_bebidos),
+                metros_andados: parseInt(metros_andados)
             }
         })
 
@@ -66,8 +58,9 @@ async function remove(req, res) {
     const { id } = req.params
 
     try {
+
         const diario = await prisma.diario.delete({
-            where: { id: parseInt(id) }
+            where: { id_diario: parseInt(id) }
         })
 
         res.status(200).json(diario)

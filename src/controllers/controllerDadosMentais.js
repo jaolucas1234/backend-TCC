@@ -46,7 +46,7 @@ async function update(req, res) {
 
     try {
         const dadosMentais = await prisma.dadosMentais.update({
-            where: { id: parseInt(id) },
+            where: { id_dadosmentais: parseInt(id) },
             data: {
                 id_user,
                 sonoPerDia,
@@ -68,7 +68,7 @@ async function remove(req, res) {
 
     try {
         const dadosMentais = await prisma.dadosMentais.delete({
-            where: { id: parseInt(id) }
+            where: { id_dadosmentais: parseInt(id) }
         })
 
         res.status(200).json(dadosMentais)

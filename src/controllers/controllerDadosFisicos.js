@@ -3,10 +3,9 @@ const prisma = new PrismaClient()
 
 async function create(req, res) {
     try {
-        const { id_dadosfisicos, id_user, altura, peso, idade, sexo, exeReg, obj, deli} = req.body
+        const { id_user, altura, peso, idade, sexo, exeReg, obj, deli} = req.body
         const dadosfisicos = await prisma.dadosFisicos.create({
         data: {
-            id_dadosfisicos,
             id_user,
             altura,
             peso,
@@ -46,13 +45,12 @@ async function read(req, res) {
 
 async function update(req, res) {
     const { id } = req.params
-    const { id_dadosfisicos, id_user, altura, peso, idade, sexo, exeReg, obj, deli } = req.body
+    const { id_user, altura, peso, idade, sexo, exeReg, obj, deli } = req.body
 
     try {
         const dadosFisicos = await prisma.dadosFisicos.update({
-            where: { id: parseInt(id) },
+            where: { id_dadosfisicos: parseInt(id) },
             data: {
-                id_dadosfisicos,
                 id_user,
                 altura,
                 peso,
@@ -76,7 +74,7 @@ async function remove(req, res) {
 
     try {
         const dadosFisicos = await prisma.dadosFisicos.delete({
-            where: { id: parseInt(id) }
+            where: { id_dadosfisicos: parseInt(id) }
         })
 
         res.status(200).json(dadosFisicos)
